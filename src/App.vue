@@ -249,6 +249,14 @@ onMounted(async () => {
 
 const allClans = [
   {
+    leader: "GZX-SophiaSigma-DP",
+    count: 48,
+    tag: "GZX",
+    name: "God Zest_X",
+    scores: 0,
+    allLevels: 4949,
+  },
+  {
     leader: "Nm_HellBoy_",
     count: 49,
     tag: "Nm",
@@ -1039,14 +1047,6 @@ const allClans = [
     name: "Ottomon Empire",
     scores: 0,
     allLevels: 1046,
-  },
-  {
-    leader: "FAZLILBULLETMAN",
-    count: 40,
-    tag: "FAZ",
-    name: "FAZ",
-    scores: 0,
-    allLevels: 1039,
   },
 ];
 </script>
