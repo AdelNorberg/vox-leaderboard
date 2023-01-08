@@ -8,7 +8,7 @@
         The rating is based on the sum of all members levels
       </div>
 
-      <div class="last-upd">Latest leaderboard update: 24.05.2022</div>
+      <div class="last-upd">Latest leaderboard update: 08.01.2023</div>
 
       <div class="list">
         <div v-for="(clan, key) in allClans" :key="key" class="clan">
