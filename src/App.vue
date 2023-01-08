@@ -1,27 +1,31 @@
 <template>
-  <div class="leaderboard">
-    <div class="header">CLAN WAR</div>
-    <div class="not-official">Not official Voxiom.io leaderboard</div>
+  <div class="cont">
+    <div v-if="!isMobile" class="leaderboard">
+      <div class="header">CLAN WAR</div>
+      <div class="not-official">Not official Voxiom.io leaderboard</div>
 
-    <div class="description">
-      The last week of BR and CTG of all clan players is taken into account
-    </div>
-
-    <div class="last-upd">Latest leaderboard update: 24.05.2022</div>
-
-    <div class="list">
-      <div v-for="(clan, key) in 100" :key="key" class="clan">
-        <div class="place">{{ key + 1 }}</div>
-        <div class="tag">AAAA</div>
-        <div class="name">Aboba Abob</div>
-        <div class="leader">AdelNorberg</div>
-        <div class="scores">51 125</div>
+      <div class="description">
+        The last week of BR and CTG of all clan players is taken into account
       </div>
+
+      <div class="last-upd">Latest leaderboard update: 24.05.2022</div>
+
+      <div class="list">
+        <div v-for="(clan, key) in 100" :key="key" class="clan">
+          <div class="place">{{ key + 1 }}</div>
+          <div class="tag">AAAA</div>
+          <div class="name">Aboba Abob</div>
+          <div class="leader">AdelNorberg</div>
+          <div class="scores">51 125</div>
+        </div>
+      </div>
+
+      <img :src="bgSvg" class="img-1" />
+      <img :src="bg2Svg" class="img-2" />
+      <img :src="bg3Svg" class="img-3" />
     </div>
 
-    <img :src="bgSvg" class="img-1" />
-    <img :src="bg2Svg" class="img-2" />
-    <img :src="bg3Svg" class="img-3" />
+    <div v-else class="is-mobile">MOBILE OR TABLET NOT SUPPORTED. SORRY!</div>
   </div>
 </template>
 
@@ -73,12 +77,25 @@ html {
 </style>
 
 <style lang="scss" scoped>
-.leaderboard {
+.leaderboard,
+.cont {
   width: 100vw;
   height: 100vh;
   background: linear-gradient(97.27deg, #105fa8 5.99%, #009ef8 98.74%);
   color: white;
   position: relative;
+}
+
+.is-mobile {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(97.27deg, #105fa8 5.99%, #009ef8 98.74%);
+  color: white;
+  position: relative;
+  font-size: 3.5rem;
+  text-align: center;
+  padding-top: 40vh;
+  box-sizing: border-box;
 }
 
 .header {
@@ -139,7 +156,7 @@ html {
 
 .list {
   width: 87.5rem;
-  height: 53.5rem;
+  height: 45rem;
   display: flex;
   flex-wrap: wrap;
   background-color: #0e5a9a;
@@ -182,7 +199,7 @@ html {
   position: absolute;
   left: 1.5rem;
   font-size: 1.5rem;
-  top: 14.25rem;
+  bottom: 45.5rem;
 }
 </style>
 
@@ -191,6 +208,21 @@ import "@/assets/global.scss?inline";
 import bgSvg from "@/assets/bg.svg";
 import bg2Svg from "@/assets/bg2.svg";
 import bg3Svg from "@/assets/bg3.svg";
+import UAParser from "ua-parser-js";
+import { ref, onMounted } from "vue";
+
+const isMobile = ref(false);
+
+onMounted(async () => {
+  try {
+    const uaparser = await new UAParser();
+    const deviceType = uaparser.getDevice().type;
+    if (deviceType === "mobile" || deviceType === "tablet")
+      isMobile.value = true;
+  } catch (e) {
+    console.error(e);
+  }
+});
 
 const allClans = { AAAA: { scores: 50000 } };
 </script>
